@@ -1,0 +1,68 @@
+### Criar cliente
+POST http://localhost:8080/clientes
+Content-Type: application/json
+
+{
+  "nome": "Maria Silva",
+  "email": "maria@email.com"
+}
+
+### Criar endereço para cliente
+POST http://localhost:8080/clientes/1/enderecos
+Content-Type: application/json
+
+{
+  "rua": "Rua 10",
+  "cidade": "Goiânia",
+  "cep": "74000-000"
+}
+
+### Criar produto
+POST http://localhost:8080/produtos
+Content-Type: application/json
+
+{
+  "nome": "Notebook Gamer",
+  "preco": 4500.00,
+  "estoque": 10
+}
+
+### Listar produtos paginado
+GET http://localhost:8080/produtos?page=0&size=10&sort=nome,asc
+
+### Criar pedido
+POST http://localhost:8080/pedidos
+Content-Type: application/json
+
+{
+  "clienteId": 1,
+  "enderecoId": 1,
+  "itens": [
+    {
+      "produtoId": 1,
+      "quantidade": 2
+    }
+  ]
+}
+
+### Atualizar status para PAGO
+PATCH http://localhost:8080/pedidos/1/status
+Content-Type: application/json
+
+{
+  "novoStatus": "PAGO"
+}
+
+### Atualizar status para ENVIADO
+PATCH http://localhost:8080/pedidos/1/status
+Content-Type: application/json
+
+{
+  "novoStatus": "ENVIADO"
+}
+
+### Listar pedidos por cliente
+GET http://localhost:8080/pedidos?clienteId=1&page=0&size=10
+
+### Cancelar pedido (apenas CRIADO)
+DELETE http://localhost:8080/pedidos/1
